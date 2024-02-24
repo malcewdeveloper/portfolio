@@ -1,0 +1,11 @@
+.root {
+    @apply max-w-7xl mx-auto py-11 flex items-start;
+
+    .text {
+        @apply max-w-[171px] text-[26px] leading-[30px] text-[#6A7273];
+    }
+
+    .image {
+        @apply mr-11 mt-1.5;
+    }
+}
