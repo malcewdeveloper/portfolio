@@ -1,0 +1,23 @@
+.root {
+    @apply max-w-[684px] bg-[#152324] px-3 py-1 rounded-xl mb-12;
+
+    .title {
+        @apply text-2xl inline-block;
+    }
+
+    .list {
+        @apply inline-flex flex-wrap;
+
+        .item {
+            @apply inline-block text-[#6A7273] text-2xl relative before:content-[""];
+        }
+        
+        .item:not(:last-child) {
+            @apply mr-6;
+
+            &::before {
+                @apply absolute top-[50%] -right-[16px] w-3 h-3 rotate-45 border-r-[2px] border-t-[2px] border-[#6A7273] border-solid -translate-y-2/4;
+            }
+        }
+    }
+}
