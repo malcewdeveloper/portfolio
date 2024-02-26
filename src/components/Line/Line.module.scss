@@ -1,0 +1,13 @@
+.root {
+    @apply flex text-2xl mb-2;
+
+    .number {
+        @apply mr-4 text-[#6A7273];
+    }
+
+    .container {
+        .tag {
+            @apply text-[#6A7273];
+        }
+    }
+}
