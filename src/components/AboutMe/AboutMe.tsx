@@ -1,6 +1,6 @@
 import React from "react";
 import { IMe } from "@/interfaces";
-// import { Line } from "@/components";
+import { Line } from "@/components";
 import Link from "next/link";
 import classes from './AboutMe.module.scss'
 
@@ -15,29 +15,29 @@ const AboutMe: React.FC<IAboutMeProps> = (props) => {
 
     return (
         <div className={ classes.root }>
-            {/* { me.map(me => (
-                <>
-                    <Line tag="name" number={ number++ }>{ me.name }</Line>
-                    <Line tag="city" number={ number++ }>{ me.city }</Line>
-                    <Line tag="age" number={ number++ }>{ me.age }</Line>
-                    <Line tag="profession" number={ number++ }>{ me.profession }</Line>
-                    <Line number={ number++ } />
+            { me.map(me => (
+                <React.Fragment key={ me.name }>
+                    <Line tag="name" number={ ++number }>{ me.name }</Line>
+                    <Line tag="city" number={ ++number }>{ me.city }</Line>
+                    <Line tag="age" number={ ++number }>{ `${me.age} года` }</Line>
+                    <Line tag="profession" number={ ++number }>{ me.profession }</Line>
+                    <Line number={ ++number } />
                     {me.job.map(job => (
-                        <Line tag={`job ${job.period[0]}-${job.period[1]}`} number={ number++ }>{ job.name }</Line>
+                        <Line key={ job.name } tag={`job ${job.period[0]}-${job.period[1]}`} number={ ++number }>{ job.name }</Line>
                     ))}
                     {me.projects.map(project => (
-                        <Line tag="my project" number={ number++ }>
-                            { <Link href={ project.link }>{ project.name }</Link> }
+                        <Line key={ project.name } tag="my project" number={ ++number }>
+                            { <Link className="text-[#FEDB31]" href={ project.link }>{ project.name }</Link> }
                         </Line>
                     ))}
-                    <Line />
+                    <Line number={++number} />
                     {me.contacts.map(contact => (
-                        <Line tag="contact" number={ number++ }>
-                            <Link href={ contact.url }>{ contact.name }</Link>
+                        <Line key={ contact.name } tag="contact" number={ ++number }>
+                            <Link className="text-[#35BAEB]" href={ contact.url }>{ contact.name }</Link>
                         </Line>
                     ))}
-                </>
-            )) } */}
+                </React.Fragment>
+            )) }
         </div>
     )
 }
