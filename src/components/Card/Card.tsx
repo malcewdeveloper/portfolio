@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Tag from "../Tag";
 import classes from './Card.module.scss';
 
 interface ICardProps {
@@ -18,8 +19,8 @@ const Card: React.FC<ICardProps> = (props) => {
             <Link className={ classes.link } href={ url }>
                 <Image className={ classes.image } src={ imageUrl } width={ 400 } height={ 550 } alt="This is preview image" />
                 <div className={ classes.description }>
-                    {/* { tags && tags.map(tag => <Tag>{ tag }</Tag>) } */}
-                    <div>{ name }</div>
+                    { tags && tags.map(tag => <Tag key={ tag }>{ tag }</Tag>) }
+                    <div className={ classes.name }>{ name }</div>
                 </div>
             </Link>
         </div>
