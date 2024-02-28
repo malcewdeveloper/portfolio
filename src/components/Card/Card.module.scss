@@ -1,0 +1,19 @@
+.root {
+    @apply relative max-w-[400px] rounded-3xl w-full h-[550px] overflow-hidden;
+
+    .link {
+        @apply relative h-full w-full inline-block p-1.5;
+
+        .image {
+            @apply object-cover absolute top-0 left-0;
+        }
+
+        .description {
+            @apply absolute bottom-1.5 px-3.5 py-2 backdrop-blur-[4px] bg-black/70 w-full max-w-[388px] rounded-[20px];
+        }
+    }
+
+    &:not(:last-child) {
+        @apply mr-5;
+    }
+}
