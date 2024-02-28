@@ -1,0 +1,7 @@
+.root {
+    @apply bg-white text-black px-1 py-0.5 rounded-lg text-sm;
+
+    &:not(:last-child) {
+        @apply mr-2.5;
+    }
+}
