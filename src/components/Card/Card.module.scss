@@ -10,6 +10,10 @@
 
         .description {
             @apply absolute bottom-1.5 px-3.5 py-2 backdrop-blur-[4px] bg-black/70 w-full max-w-[388px] rounded-[20px];
+
+            .name {
+                @apply text-xl;
+            }
         }
     }
 
