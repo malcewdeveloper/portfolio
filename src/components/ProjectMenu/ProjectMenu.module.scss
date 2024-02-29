@@ -1,0 +1,16 @@
+.root {
+    @apply mx-auto w-screen h-screen fixed top-0 left-0 bg-[#071415];
+
+    .container {
+        @apply max-w-[1280px] mx-auto;
+
+        .heading {
+            @apply text-[128px] mb-[50px];
+        }
+    
+        .wrapper {
+            @apply flex flex-wrap;
+        }
+    }
+
+}
