@@ -6,3 +6,4 @@ export { default as Card} from './Card';
 export { default as Tag } from './Tag';
 export { default as ProjectMenu } from './ProjectMenu';
 export { default as DashboardList } from './DashboardList';
+export { default as DashboardListItem } from './DashboardListItem';
