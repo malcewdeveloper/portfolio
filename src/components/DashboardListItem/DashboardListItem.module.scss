@@ -1,0 +1,15 @@
+.root {
+    @apply flex justify-between py-2;
+
+    .body {
+        @apply flex items-center;
+        
+        .icon {
+            @apply mr-2;
+        }
+    }
+
+    .actions {
+        @apply flex;
+    }
+}
