@@ -6,11 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db": "node -r dotenv/config ./scripts/db.js"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
+    "dotenv": "^16.4.5",
     "next": "14.1.0",
+    "pg": "^8.11.3",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.0.1",
