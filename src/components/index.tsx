@@ -7,3 +7,15 @@ export { default as Tag } from './Tag';
 export { default as ProjectMenu } from './ProjectMenu';
 export { default as DashboardList } from './DashboardList';
 export { default as DashboardListItem } from './DashboardListItem';
+export { default as DashboardTable } from './DashboardTable';
+export { 
+    TagModalForm, 
+    ProjectModalForm, 
+    CategoryModalForm, 
+    ProjectUpdateModalForm,
+    CategoryUpdateModalForm,
+    TagUpdateModalForm,
+    ProjectRemoveModal,
+    CategoryRemoveModal,
+    TagRemoveModal,
+} from './ModalForms';
