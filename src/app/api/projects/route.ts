@@ -16,7 +16,17 @@ export async function GET() {
     try{
         client.connect();
 
-        const res: QueryResult<ProjectType> = await client.query<ProjectType>(`SELECT * FROM projects;`);
+        const res: QueryResult<ProjectType> = await client.query<ProjectType>(`
+            SELECT projects.*,
+                tags.name AS tag_name,
+                categories.name AS category_name
+            FROM
+                projects
+            LEFT JOIN 
+                tags ON projects.tag_id = tags.id
+            LEFT JOIN
+                categories ON projects.category_id = categories.id ;`
+        );
 
         const data = res.rows;
 
