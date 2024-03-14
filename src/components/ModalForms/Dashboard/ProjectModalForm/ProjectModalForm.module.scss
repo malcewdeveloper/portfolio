@@ -1,0 +1,88 @@
+.root {
+    @apply relative z-10;
+
+    .background {
+        @apply fixed inset-0 bg-[#131820] bg-opacity-75 transition-opacity;
+    }
+
+    .wrapper {
+        @apply fixed inset-0 z-10 w-screen overflow-y-auto;
+
+        .container {
+            @apply flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0;
+        }
+    }
+
+    .panel {
+        @apply relative transform overflow-hidden rounded-2xl bg-white transition-all sm:my-8 sm:w-full sm:max-w-[568px];
+
+        .content {
+            @apply bg-white px-4;
+
+            .contentWrapper {
+                @apply text-left;
+
+                .heading {
+                    @apply text-[#374957] text-[20px] mb-6 mt-3;
+                }
+                
+                .inputWrapper {
+                    @apply flex items-center mt-2;
+
+                    .input {
+                        @apply block flex-1 border-0 rounded-xl text-[#374957] text-[14px] py-3 pl-3 w-full bg-[#E9EFF2] placeholder:text-[#B9C8D4] placeholder:text-[14px] focus:ring-0;
+                    }
+
+                    .input:not(:last-child) {
+                        @apply mr-2;
+                    }
+                }
+
+                .fileWrapper {
+                    .fieldFileWrapper {
+                        @apply relative bg-[#E9EFF2] rounded-xl;
+
+                        .file {
+                            @apply hidden;
+                        }
+
+                        .label {
+                            @apply flex items-center justify-between px-3 py-4;
+
+                            .fileFake {
+                                @apply text-[14px] text-[#374957];
+                            }
+
+                            .buttonUpload {
+                                @apply text-[14px] bg-[#374957] py-1.5 px-2 rounded-lg;
+                            }
+                            .buttonClose {
+                                @apply bg-[#374957] w-5 h-5 rounded flex items-center justify-center;
+                            }
+                        }
+                    }
+
+                    .fieldFileWrapper:not(:last-child) {
+                        @apply mb-2;
+                    }
+
+                    .button {
+                        @apply inline-flex rounded-md px-2 py-1.5 mr-2 text-[#374957] text-[14px] bg-[#E9EFF2];
+                    }
+                }
+            }
+        }
+    
+        .actions {
+            @apply flex px-4 mt-6 mb-4;
+
+            .button {
+                @apply inline-flex rounded-md px-2 py-1.5 mr-2 text-[#374957] text-[14px] bg-[#E9EFF2];
+            }
+
+            .button:not(:last-child) {
+                @apply mr-2;
+            }
+        }
+    }
+}
