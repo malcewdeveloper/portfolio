@@ -1,0 +1,43 @@
+.root {
+    @apply relative z-10;
+
+    .background {
+        @apply fixed inset-0 bg-[#131820] bg-opacity-75 transition-opacity;
+    }
+
+    .wrapper {
+        @apply fixed inset-0 z-10 w-screen overflow-y-auto;
+
+        .container {
+            @apply flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0;
+        }
+    }
+
+    .panel {
+        @apply relative transform overflow-hidden rounded-2xl bg-white transition-all sm:my-8 sm:w-full sm:max-w-[262px];
+
+        .content {
+            @apply bg-white px-4;
+
+            .contentWrapper {
+                @apply text-left;
+
+                .heading {
+                    @apply text-[#374957] text-[20px] mb-6 mt-3;
+                }
+            }
+        }
+    
+        .actions {
+            @apply flex px-4 mt-6 mb-4;
+
+            .button {
+                @apply inline-flex rounded-md px-2 py-1.5 mr-2 text-[#374957] text-[14px] bg-[#E9EFF2];
+            }
+
+            .button:not(:last-child) {
+                @apply mr-2;
+            }
+        }
+    }
+}
