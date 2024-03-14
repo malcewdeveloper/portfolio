@@ -1,0 +1,100 @@
+'use server'
+
+import { z } from 'zod';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
+
+const FormSchema = z.object({
+    id: z.number(),
+    name: z.string().min(2, { message: 'Укажите название тега' })
+});
+
+const CreateTag = FormSchema.omit({ id: true });
+const UpdateTag = FormSchema.omit({ id: true });
+
+export type TagStateType = {
+    errors?: {
+        name?: string[];
+    };
+    message?: string | null;
+}
+
+export async function createTag(prevState: TagStateType, formData: FormData) {    
+    const validatedField = CreateTag.safeParse({
+        name: formData.get('name')
+    })
+
+    if(!validatedField.success) {
+        return {
+            errors: validatedField.error.flatten().fieldErrors,
+            message: 'Missing fields. Failed to create tag'
+        }
+    }
+
+    const { name } = validatedField.data;
+
+    try{
+        const res = await fetch('http://localhost:3000/api/tags', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name })
+        });
+    } catch(error) {
+        return {
+            message: 'Database error. Failed ro create tag.'
+        }
+    }   
+
+    revalidatePath('/dashboard');
+}
+
+export async function updateTag(id: number, prevState: TagStateType, formData: FormData) {
+    const validatedField = UpdateTag.safeParse({
+        name: formData.get('name')
+    })
+
+    if(!validatedField.success) {
+        return {
+            errors: validatedField.error.flatten().fieldErrors,
+            message: 'Missing fields. Failed to create tag'
+        }
+    }
+
+    const { name } = validatedField.data;
+
+    try{
+        const res = await fetch('http://localhost:3000/api/tags', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, id })
+        });
+    } catch(error) {
+        return {
+            message: 'Database error. Failed ro update tag.'
+        }
+    }   
+
+    revalidatePath('/dashboard');
+}
+
+export async function deleteTag(id: number) {
+    try{
+        const res = await fetch('http://localhost:3000/api/tags', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id })
+        });
+        revalidatePath('/dashboard/invoices');
+        return { message: 'Deleted Invoice.' };
+    } catch(error) {
+        return {
+            message: 'Database error. Failed ro delete tag.'
+        }
+    }   
+}
