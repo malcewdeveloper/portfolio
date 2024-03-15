@@ -57,3 +57,17 @@ export async function fetchProjects() {
         throw new Error("Failed to fetch projects");
     }
 }
+
+export async function fetchProjectById(id: number) {
+    noStore();
+    try {
+        const res = await fetch(`${process.env.BACKEND_API}/projects/${ id }`);
+
+        const data: { data: ProjectType } = await res.json();
+
+        return data.data;
+    } catch (error) {
+        console.log('Database error', error);
+        throw new Error("Failed to fetch project by id");
+    }
+}
