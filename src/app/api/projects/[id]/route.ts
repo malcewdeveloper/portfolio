@@ -41,6 +41,8 @@ export async function GET(req: Request) {
         return Response.json({ data });
     } catch (error) {
         throw new Error(`Error get project data: ${ error }`)
+    } finally {
+        client.end();
     }
 }
 
