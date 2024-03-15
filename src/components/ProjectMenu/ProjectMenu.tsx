@@ -48,11 +48,11 @@ const ProjectMenu: React.FC<IProjectMenuProps> = (props) => {
                     <div className={ classes.wrapper }>
                         {projects.map(project => (
                             <Card 
-                            key={ project.name } 
+                            key={ project.id } 
                             name={ project.name } 
-                            url={ project.link }
-                            imageUrl={ project.imageUrl }
-                            tags={ project.category } />
+                            url={ `/projects/${project.id}` }
+                            previewImageUrl={ `/${project.preview_image_url}` }
+                            tag={ project.tag_name } />
                         ))}
                     </div>
                 </div>
