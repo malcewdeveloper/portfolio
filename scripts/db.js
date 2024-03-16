@@ -9,8 +9,15 @@ async function createUser(client) {
                 id SERIAL PRIMARY KEY,
                 name VARCHAR(255) NOT NULL,
                 email TEXT NOT NULL UNIQUE,
-                password TEXT NOT NULL
-              );`
+                password TEXT NOT NULL,
+                city VARCHAR(255) NOT NULL,
+                birthday DATE,
+                profession VARCHAR(255),
+                jobs JSONB[],
+                projects INT[],
+                contacts JSONB[],
+                FOREIGN KEY (projects) REFERENCES projects(id)
+            );`
         )
 
         console.log('Create table users successfuly!');
