@@ -10,13 +10,13 @@ async function createUser(client) {
                 name VARCHAR(255) NOT NULL,
                 email TEXT NOT NULL UNIQUE,
                 password TEXT NOT NULL,
+                stack TEXT[],
                 city VARCHAR(255) NOT NULL,
                 birthday DATE,
                 profession VARCHAR(255),
                 jobs JSONB[],
                 projects INT[],
-                contacts JSONB[],
-                FOREIGN KEY (projects) REFERENCES projects(id)
+                contacts JSONB[]
             );`
         )
 
