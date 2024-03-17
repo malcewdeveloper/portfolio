@@ -1,6 +1,6 @@
 'use server'
 
-import { TagType, CategoryType, ProjectType } from "@/interfaces";
+import { TagType, CategoryType, ProjectType, IMe } from "@/interfaces";
 import { unstable_noStore as noStore } from "next/cache";
 
 export async function fetchTags() {
@@ -69,5 +69,20 @@ export async function fetchProjectById(id: number) {
     } catch (error) {
         console.log('Database error', error);
         throw new Error("Failed to fetch project by id");
+    }
+}
+
+
+export async function fetchUsers() {
+    noStore();
+    try {
+        const res = await fetch(`${ process.env.BACKEND_API}/users`);
+
+        const data: { data: IMe[] } = await res.json();
+
+        return data.data;
+    }catch(error) {
+        console.log('Database error', error);
+        throw new Error("Failed to fetch users");
     }
 }
