@@ -1,0 +1,33 @@
+.root {
+    @apply bg-[#152324] max-w-sm max-h-[300px] w-full h-full mx-auto p-4 rounded-2xl;
+
+    .title {
+        @apply text-3xl mb-6;
+    }
+
+    .content {
+
+        .inputWrapper {
+            @apply relative max-h-11 h-full;
+
+            .input {
+                @apply w-full h-11 bg-[#E9EFF2] rounded-xl text-[#374957] px-3;
+            }
+            .buttonShow {
+                @apply absolute right-2 top-1/2 -translate-y-2/4;
+            }
+        }
+
+        .inputWrapper:not(:last-child) {
+            @apply mb-8;
+        }
+
+        .error {
+            @apply text-[#c55c55] text-[14px];
+        }
+
+        .buttonSubmit {
+            @apply bg-[#E9EFF2] px-3 py-2 text-[#374957] rounded-lg float-right;
+        }
+    }
+}
