@@ -1,11 +1,15 @@
 export interface IMe {
+    id: number;
     name: string;
+    email: string;
+    password: string;
+    stack: string[];
     city: string;
-    age: number;
+    birthday: string;
     profession: string;
-    job: JobType[];
-    projects: ProjectType[];
+    jobs: JobType[];
     contacts: ContactType[];
+    projects_data: ProjectType[];
 }
 
 export type JobType = {
