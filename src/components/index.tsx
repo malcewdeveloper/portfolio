@@ -19,3 +19,4 @@ export {
     CategoryRemoveModal,
     TagRemoveModal,
 } from './ModalForms';
+export { default as LoginForm } from './LoginForm';
