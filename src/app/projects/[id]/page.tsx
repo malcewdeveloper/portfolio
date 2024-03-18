@@ -27,13 +27,12 @@ export default async function ProjectPage({ params }: { params: { id: string } }
                 </div>
             </div>
             <div>
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     { project.image_urls.map((url, index) => (
-                        <div key={ index }>
+                        <div key={ index } className="relative w-full h-full pt-[79.5%]">
                             <Image 
-                            style={{ objectFit: 'cover', height: '480px' }} 
                             alt="Preview project image" 
-                            className="rounded-3xl" 
+                            className="absolute left-0 top-0 object-cover h-full rounded-3xl" 
                             src={ `/${url}` } 
                             width={ 620 } 
                             height={ 480 } />

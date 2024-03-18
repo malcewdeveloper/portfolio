@@ -1,8 +1,8 @@
 .root {
-    @apply max-w-7xl mx-auto py-11 flex items-start;
+    @apply max-w-7xl mx-auto py-11 flex items-start px-6;
 
     .text {
-        @apply max-w-[171px] text-[26px] leading-[30px] text-[#6A7273];
+        @apply max-w-[171px] text-lg leading-[30px] text-[#6A7273] sm:text-xl lg:text-[26px];
     }
 
     .image {

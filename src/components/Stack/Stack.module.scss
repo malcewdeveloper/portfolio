@@ -1,15 +1,15 @@
 .root {
-    @apply max-w-[684px] bg-[#152324] px-3 py-1 rounded-xl mb-12;
+    @apply max-w-[684px] w-full bg-[#152324] px-3 py-1 rounded-xl mb-12;
 
     .title {
-        @apply text-2xl inline-block;
+        @apply text-lg inline-block sm:text-xl lg:text-2xl;
     }
 
     .list {
         @apply inline-flex flex-wrap;
 
         .item {
-            @apply inline-block text-[#6A7273] text-2xl relative before:content-[""];
+            @apply inline-block text-[#6A7273] text-lg relative before:content-[""] sm:text-xl lg:text-2xl;
         }
         
         .item:not(:last-child) {
