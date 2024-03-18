@@ -17,10 +17,14 @@ const ProjectMenu: React.FC<IProjectMenuProps> = (props) => {
     const [showMenu, setShowMenu] = React.useState(false);
 
     React.useEffect(() => {
+        if(document.body.offsetHeight <= window.innerHeight) document.body.style.height = `${window.innerHeight + 5}px`;
+        
         const handleScroll = () => {
             const scrollTop = window.scrollY;
-            
-            if(scrollTop > 1) {
+            const displayHeight = window.innerHeight;
+            const fullHeight = document.body.offsetHeight;
+
+            if(scrollTop >= (fullHeight - displayHeight)) {
                 setShowMenu(true);
             } else {
                 setShowMenu(false);
