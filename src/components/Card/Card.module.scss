@@ -1,23 +1,20 @@
 .root {
-    @apply relative max-w-[400px] rounded-3xl w-full h-[550px] overflow-hidden;
+    @apply relative max-w-[400px] rounded-3xl w-full overflow-hidden;
 
     .link {
-        @apply relative h-full w-full inline-block p-1.5;
+        @apply relative h-full w-full inline-block p-1.5 pt-[137.5%];
 
         .image {
-            @apply object-cover absolute top-0 left-0;
+            @apply object-cover absolute top-0 left-0 h-full;
         }
 
         .description {
-            @apply absolute bottom-1.5 px-3.5 py-2 backdrop-blur-[4px] bg-black/70 w-full max-w-[388px] rounded-[20px];
+            @apply absolute bottom-1.5 px-3.5 py-2 backdrop-blur-[4px] bg-black/70 w-[calc(100%-12px)] max-w-[388px] rounded-[20px];
 
             .name {
-                @apply text-xl;
+                @apply text-base sm:text-xl;
             }
         }
     }
 
-    &:not(:last-child) {
-        @apply mr-5;
-    }
 }
