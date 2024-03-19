@@ -65,7 +65,7 @@ export async function createProject(prevState: ProjectStateType, formData: FormD
     
 
     try{
-        const res = await fetch('http://localhost:3000/api/projects', {
+        const res = await fetch(`${process.env.BACKEND_API}/projects`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -113,7 +113,7 @@ export async function updateProject(id: number, prevState: ProjectStateType, for
     const preparePreviewImageUrl = previewImageUrl.name;
 
     try{
-        const res = await fetch('http://localhost:3000/api/projects', {
+        const res = await fetch(`${process.env.BACKEND_API}/projects`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -133,7 +133,7 @@ export async function updateProject(id: number, prevState: ProjectStateType, for
 
 export async function deleteProject(id: number) {
     try{
-        const res = await fetch('http://localhost:3000/api/projects', {
+        const res = await fetch(`${process.env.BACKEND_API}/projects`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

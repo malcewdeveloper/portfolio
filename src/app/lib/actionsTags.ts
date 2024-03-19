@@ -2,7 +2,6 @@
 
 import { z } from 'zod';
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 
 const FormSchema = z.object({
     id: z.number(),
@@ -34,7 +33,7 @@ export async function createTag(prevState: TagStateType, formData: FormData) {
     const { name } = validatedField.data;
 
     try{
-        const res = await fetch('http://localhost:3000/api/tags', {
+        const res = await fetch(`${process.env.BACKEND_API}/tags`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -67,7 +66,7 @@ export async function updateTag(id: number, prevState: TagStateType, formData: F
     const { name } = validatedField.data;
 
     try{
-        const res = await fetch('http://localhost:3000/api/tags', {
+        const res = await fetch(`${process.env.BACKEND_API}/tags`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -87,7 +86,7 @@ export async function updateTag(id: number, prevState: TagStateType, formData: F
 
 export async function deleteTag(id: number) {
     try{
-        const res = await fetch('http://localhost:3000/api/tags', {
+        const res = await fetch(`${process.env.BACKEND_API}/tags`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

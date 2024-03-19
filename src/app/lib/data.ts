@@ -6,7 +6,7 @@ import { unstable_noStore as noStore } from "next/cache";
 export async function fetchTags() {
     noStore();
     try {
-        const res = await fetch('http://localhost:3000/api/tags', {
+        const res = await fetch(`${process.env.BACKEND_API}/tags`, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -25,7 +25,7 @@ export async function fetchTags() {
 export async function fetchCategories() {
     noStore();
     try {
-        const res = await fetch('http://localhost:3000/api/categories', {
+        const res = await fetch(`${process.env.BACKEND_API}/categories`, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -43,7 +43,7 @@ export async function fetchCategories() {
 export async function fetchProjects() {
     noStore();
     try {
-        const res = await fetch('http://localhost:3000/api/projects', {
+        const res = await fetch(`${process.env.BACKEND_API}/projects`, {
             headers: {
                 'Content-Type': 'application/json'
             }
