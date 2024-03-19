@@ -1,22 +1,9 @@
-import { Client } from 'pg';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import { sql } from "@vercel/postgres";
 
 
 export async function GET(req: Request) {
-    const client = new Client({
-        host: process.env.DB_HOST,
-        port: Number(process.env.DB_PORT),
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE
-    });
-
     try {
-        client.connect();
-
-        const res = await client.query(`
+        const res = await sql`
             SELECT 
                 users.*, 
                 json_agg(projects.*) AS projects_data
@@ -28,7 +15,7 @@ export async function GET(req: Request) {
                 projects ON projects.id = project_id
             GROUP BY 
                 users.id;
-        `);
+        `;
 
         if(!res.rows.length) {
             throw new Error(`Users does not exist`);
@@ -41,23 +28,11 @@ export async function GET(req: Request) {
 
     } catch (error) {
         throw new Error(`Error get users data: ${ error }`)
-    } finally {
-        client.end();
     }
 }
 
 export async function POST(req: Request) {
-    const client = new Client({
-        host: process.env.DB_HOST,
-        port: Number(process.env.DB_PORT),
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE
-    });
-
     try {
-        client.connect();
-
         const { 
             name, 
             email, 
@@ -71,31 +46,19 @@ export async function POST(req: Request) {
             contacts 
         } = await req.json();
 
-        await client.query(`
+        await sql`
             INSERT INTO users (name, email, password, stack, city, birthday, profession, jobs, projects, contacts)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);
-        `, [name, email, password, stack, city, birthday, profession, jobs, projects, contacts]);
+            VALUES (${name}, ${email}, ${password}, ${stack}, ${city}, ${birthday}, ${profession}, ${jobs}, ${projects}, ${contacts});
+        `
 
         return Response.json({ status: 200, message: 'OK' });
     } catch(error) {
         throw new Error(`Error create users data: ${ error }`)
-    } finally {
-        client.end();
     }
 }
 
 export async function PUT(req: Request) {
-    const client = new Client({
-        host: process.env.DB_HOST,
-        port: Number(process.env.DB_PORT),
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE
-    });
-
     try {
-        client.connect();
-
         const { 
             name, 
             email, 
@@ -110,40 +73,26 @@ export async function PUT(req: Request) {
             id
         } = await req.json();
 
-        await client.query(`
+        await sql`
             UPDATE users
-            SET name = $1, email = $2, password = $3, stack = $4, city = $5, birthday = $6, profession = $7, jobs = $8, projects = $9, contacts = $10
-            WHERE id = $11;
-        `, [name, email, password, stack, city, birthday, profession, jobs, projects, contacts, id]);
+            SET name = ${name}, email = ${email}, password = ${password}, stack = ${stack}, city = ${city}, birthday = ${birthday}, profession = ${profession}, jobs = ${jobs}, projects = ${projects}, contacts = ${contacts}
+            WHERE id = ${id};
+        `
 
         return Response.json({ status: 200, message: 'OK' });
     } catch (error) {
         throw new Error(`Error update user data: ${ error }`);
-    } finally {
-        client.end();
     }
 }
 
 export async function DELETE(req: Request) {
-    const client = new Client({
-        host: process.env.DB_HOST,
-        port: Number(process.env.DB_PORT),
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE
-    });
-
     try {
-        client.connect();
-
         const { id } = await req.json();
 
-        await client.query(`DELETE FROM users WHERE id = $1;`, [id]);
+        await sql`DELETE FROM users WHERE id = ${id};`;
 
         return Response.json({ status: 200, message: 'OK' });
     } catch (error) {
         throw new Error(`Error delete user data: ${ error }`);
-    } finally {
-        client.end();
     }
 }

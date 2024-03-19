@@ -1,22 +1,9 @@
-import { Client, QueryResult } from 'pg';
-import dotenv from 'dotenv';
 import { CategoryType } from '@/interfaces';
-
-dotenv.config()
+import { sql } from '@vercel/postgres';
 
 export async function GET() {
-    const client = new Client({
-        host: process.env.DB_HOST,
-        port: Number(process.env.DB_PORT),
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE
-    });
-
     try{
-        client.connect();
-
-        const res: QueryResult<CategoryType> = await client.query<CategoryType>(`SELECT * FROM categories;`);
+        const res = await sql<CategoryType>`SELECT * FROM categories;`;
 
         const data = res.rows;
 
@@ -25,90 +12,51 @@ export async function GET() {
         })
     } catch(error) {
         throw new Error(`Error get categories data: ${ error }`)
-    } finally {
-        client.end();
     }
 }
 
 export async function POST(req: Request) {
-    const client = new Client({
-        host: process.env.DB_HOST,
-        port: Number(process.env.DB_PORT),
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE
-    });
-
     try {
-        client.connect();
-
         const { name } = await req.json();
 
-        await client.query(`
+        await sql`
             INSERT INTO categories (name)
-            VALUES ($1);
-        `, [name]);
+            VALUES (${name});
+        `
 
         return Response.json({ status: 200, message: 'OK' });
     } catch (error) {
         throw new Error(`Error create category: ${ error }`)
-    } finally {
-        client.end();
     }
 }
 
 export async function PUT(req: Request) {
-    const client = new Client({
-        host: process.env.DB_HOST,
-        port: Number(process.env.DB_PORT),
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE
-    });
-
     try {
-        client.connect();
-
         const { id, name } = await req.json();
 
-        await client.query(`
+        await sql`
             UPDATE categories
-            SET name = $1
-            WHERE id = $2;
-        `, [name, id]);
+            SET name = ${name}
+            WHERE id = ${id};
+        `
 
         return Response.json({ status: 200, message: 'OK' });
 
     } catch (error) {
         throw new Error(`Error update category: ${ error }`)
-    } finally {
-        client.end();
     }
 }
 
 export async function DELETE(req: Request) {
-    const client = new Client({
-        host: process.env.DB_HOST,
-        port: Number(process.env.DB_PORT),
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE
-    });
-
     try {
-        client.connect();
-
         const { id } = await req.json();
 
-        await client.query(`
-            DELETE FROM categories WHERE id = $1;
-        `, [id]);
+        await sql`
+            DELETE FROM categories WHERE id = ${id};
+        `;
 
         return Response.json({ status: 200, message: 'OK' });
-
     } catch (error) {
         throw new Error(`Error update category: ${ error }`)
-    } finally {
-        client.end();
     }
 }
