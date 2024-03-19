@@ -41,15 +41,17 @@ export async function createCategory(prevState: CategoryStateType, formData: For
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ name })
-        })
-        
+        });
+
+        revalidatePath('/dashboard');
+
+        return { message: 'Create category successfully' }
+
     } catch(error) {
         return {
             message: 'Database error. Failed ro create tag'
         }
     }
-
-    revalidatePath('/dashboard');
 }
 
 export async function updateCategory(id: number, prevState: CategoryStateType, formData: FormData) {
@@ -73,14 +75,16 @@ export async function updateCategory(id: number, prevState: CategoryStateType, f
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ name, id })
-        })
+        });
+
+        revalidatePath('/dashboard');
+
+        return { message: 'Update category successfully' };
     } catch (error) {
         return {
             message: 'Database error. Failed ro create tag.'
         }
     }
-
-    revalidatePath('/dashboard');
 }
 
 export async function  deleteCategory(id: number) {
@@ -91,12 +95,14 @@ export async function  deleteCategory(id: number) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ id })
-        })
+        });
+
+        revalidatePath('/dashboard');
+
+        return { message: 'Delete category successfully' };
     } catch (error) {
         return {
             message: 'Database error. Failed ro create tag.'
         }
     }
-
-    revalidatePath('/dashboard');
 }

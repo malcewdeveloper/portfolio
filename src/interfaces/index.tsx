@@ -20,17 +20,18 @@ export type JobType = {
 export type ProjectType = {
     id: number;
     name: string;
-    tagId: number;
-    categoryId: number;
+    tag_id: number;
+    category_id: number;
     url: string;
-    previewImageUrl: string;
-    imageUrls: string[];
+    preview_image_url: string;
+    image_urls: string[];
     description: string;
+    tag_name: string;
 }
 
 export type ContactType = {
     name: string;
-    url: string;
+    link: string;
 }
 
 export type TagType = {

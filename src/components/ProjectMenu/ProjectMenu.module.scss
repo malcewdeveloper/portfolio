@@ -2,15 +2,14 @@
     @apply mx-auto pb-12 w-screen h-full fixed top-0 left-0 bg-[#071415] overflow-y-auto;
 
     .container {
-        @apply max-w-[1280px] mx-auto px-6;
+        @apply max-w-[1280px] mx-auto px-6 box-content;
 
         .heading {
             @apply text-6xl mb-[50px] sm:text-8xl lg:text-9xl;
         }
     
         .wrapper {
-            @apply flex flex-wrap gap-5 lg:flex-nowrap justify-center;
+            @apply flex flex-wrap gap-5 justify-center lg:justify-start;
         }
     }
-
 }

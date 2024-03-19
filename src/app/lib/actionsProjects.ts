@@ -25,10 +25,10 @@ export type ProjectStateType = {
         name?: string[];
         tagId?: string[];
         categoryId?: string[];
-        url?: string;
-        description?: string;
-        previewImageUrl?: File;
-        imageUrls?: File[];
+        url?: string[];
+        description?: string[];
+        previewImageUrl?: string[];
+        imageUrls?: string[];
     };
     message?: string | null;
 }
@@ -72,13 +72,15 @@ export async function createProject(prevState: ProjectStateType, formData: FormD
             },
             body: JSON.stringify({ name, tagId, categoryId, description, imageUrls: prepareImageUrls, previewImageUrl: preparePreviewImageUrl })
         });
+
+        revalidatePath('/dashboard');
+
+        return { message: 'Create project successfully' };
     } catch(error) {
         return {
             message: 'Database error. Failed ro create tag.'
         }
     }   
-
-    revalidatePath('/dashboard');
 }
 
 export async function updateProject(id: number, prevState: ProjectStateType, formData: FormData) {
@@ -118,13 +120,15 @@ export async function updateProject(id: number, prevState: ProjectStateType, for
             },
             body: JSON.stringify({ name, id, tagId, categoryId, description, previewImageUrl: preparePreviewImageUrl, imageUrls: prepareImageUrls })
         });
+
+        revalidatePath('/dashboard');
+
+        return { message: 'Update project successfully' };
     } catch(error) {
         return {
             message: 'Database error. Failed ro create tag.'
         }
     }   
-
-    revalidatePath('/dashboard');
 }
 
 export async function deleteProject(id: number) {
