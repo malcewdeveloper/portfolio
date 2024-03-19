@@ -41,13 +41,15 @@ export async function createTag(prevState: TagStateType, formData: FormData) {
             },
             body: JSON.stringify({ name })
         });
+
+        revalidatePath('/dashboard');
+
+        return { message: 'Create tag successfully' }
     } catch(error) {
         return {
             message: 'Database error. Failed ro create tag.'
         }
     }   
-
-    revalidatePath('/dashboard');
 }
 
 export async function updateTag(id: number, prevState: TagStateType, formData: FormData) {
@@ -72,13 +74,15 @@ export async function updateTag(id: number, prevState: TagStateType, formData: F
             },
             body: JSON.stringify({ name, id })
         });
+
+        revalidatePath('/dashboard');
+
+        return { message: 'Update tag successfully' }
     } catch(error) {
         return {
             message: 'Database error. Failed ro update tag.'
         }
     }   
-
-    revalidatePath('/dashboard');
 }
 
 export async function deleteTag(id: number) {

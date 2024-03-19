@@ -64,7 +64,7 @@ const TagModalForm: React.FC<ITagModalFormProps> = (props) => {
 										<button
 											type="submit"
 											className={ classes.button }
-											onClick={() => setOpen(false)}
+											onClick={() => onClose(false)}
 										>
 											<span></span>
 											Сохранить
@@ -72,7 +72,7 @@ const TagModalForm: React.FC<ITagModalFormProps> = (props) => {
 										<button
 											type="button"
 											className={ classes.button }
-											onClick={() => setOpen(false)}
+											onClick={() => onClose(false)}
 											ref={ cancelButtonRef }
 										>
 											<span></span>
