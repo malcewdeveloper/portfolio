@@ -55,7 +55,7 @@ const ProjectMenu: React.FC<IProjectMenuProps> = (props) => {
                             key={ project.id } 
                             name={ project.name } 
                             url={ `/projects/${project.id}` }
-                            previewImageUrl={ `/${project.preview_image_url}` }
+                            previewImageUrl={ project.preview_image_url }
                             tag={ project.tag_name } />
                         ))}
                     </div>

@@ -2,6 +2,8 @@
 
 import { z } from 'zod';
 import { revalidatePath } from 'next/cache';
+import { PutBlobResult } from '@vercel/blob';
+import { imageMultiUploader, imageSingleUploader } from './actionsUpload';
 
 
 const FileSchema = z.instanceof(File);
@@ -60,8 +62,8 @@ export async function createProject(prevState: ProjectStateType, formData: FormD
         imageUrls 
     } = validatedField.data;
 
-    const prepareImageUrls = imageUrls.map(url => url.name);
-    const preparePreviewImageUrl = previewImageUrl.name;
+    const prepareImageUrls = (await imageMultiUploader(imageUrls)).map(blob => blob.url);
+    const preparePreviewImageUrl = (await imageSingleUploader(previewImageUrl)).url;
     
 
     try{
@@ -109,8 +111,8 @@ export async function updateProject(id: number, prevState: ProjectStateType, for
         imageUrls 
     } = validatedField.data;
 
-    const prepareImageUrls = imageUrls.map(url => url.name);
-    const preparePreviewImageUrl = previewImageUrl.name;
+    const prepareImageUrls = (await imageMultiUploader(imageUrls)).map(blob => blob.url);
+    const preparePreviewImageUrl = (await imageSingleUploader(previewImageUrl)).url;
 
     try{
         const res = await fetch(`${process.env.BACKEND_API}/projects`, {

@@ -63,7 +63,7 @@ export async function PUT(req: Request) {
 
         await sql`
             UPDATE projects
-            SET name = ${name}, tag_id = ${tagId}, category_id = ${categoryId}, url = ${url}, preview_image_url = ${previewImageUrl}, image_urls = {${imageUrls.join(',')}}, description = ${description}
+            SET name = ${name}, tag_id = ${tagId}, category_id = ${categoryId}, url = ${url}, preview_image_url = ${previewImageUrl}, image_urls = ${imageUrls}, description = ${description}
             WHERE id = ${id};
         `;
 
