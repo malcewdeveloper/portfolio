@@ -33,7 +33,7 @@ export default async function ProjectPage({ params }: { params: { id: string } }
                             <Image 
                             alt="Preview project image" 
                             className="absolute left-0 top-0 object-cover h-full rounded-3xl" 
-                            src={ `/${url}` } 
+                            src={ url } 
                             width={ 620 } 
                             height={ 480 } />
                         </div> 

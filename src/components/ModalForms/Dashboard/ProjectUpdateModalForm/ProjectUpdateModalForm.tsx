@@ -18,8 +18,8 @@ interface IProjectUpdateModalFormProps {
 const ProjectUpdateModalForm: React.FC<IProjectUpdateModalFormProps> = (props) => {
     const { tags, categories, project, isOpen, onClose } = props;
     
-    const [fileName, setFileName] = React.useState(project?.preview_image_url);
-    const [filesName, setFilesName] = React.useState(project?.image_urls?.join(', '));
+    const [fileName, setFileName] = React.useState('Файл не выбран');
+    const [filesName, setFilesName] = React.useState('Файлы не выбраны');
     const cancelButtonRef = React.useRef(null);
     const singleInputRef = React.useRef<HTMLInputElement>(null);
     const multiInputRef = React.useRef<HTMLInputElement>(null);
